@@ -25,7 +25,7 @@ void throwErrorAndClearInputBuffer(const char* errorMsg)
 
 void userInputArray(float* array, unsigned int* arraySizePtr)
 {
-	printf("Enter size of array in range: 1 - 100: ");
+	printf("Enter size of array in range 1 - 100: ");
 
 	while (*arraySizePtr < 1 || *arraySizePtr > MAX_SIZE_OF_ARRAY)
 	{
