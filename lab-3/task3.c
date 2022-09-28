@@ -104,7 +104,7 @@ int main()
 	unsigned int descendingArraySize = 0;
 	unsigned int combinedArraySize = 0;
 
-	//Task 2 (number 3)
+	//Task 3 (number 3)
 	printf("Define growing array:\n");
 	userInputArray(&growingArray[0], &growingArraySize, GROWING_ARRAY);
 
