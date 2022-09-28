@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Downloads\Telegram\task1.c" />
+    <ClCompile Include="task1.c" />
     <ClCompile Include="task2.c" />
     <ClCompile Include="task3.c" />
   </ItemGroup>
