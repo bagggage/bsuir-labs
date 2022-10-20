@@ -46,18 +46,18 @@ void throwErrorAndClearInputBuffer(const char* errorMsg)
 
 void printMatrixWithHighlightedEvenRows(float* matrixPtr) 
 {
-	for (int i = 0; i < MATRIX_SIZE; i++)
+	for (int row = 0; row < MATRIX_SIZE; row++)
 	{
 		printf("\t");
 
-		if ((i + 1) % 2 == 0)
+		if ((row + 1) % 2 == 0)
 			setTextColor(GREEN);
 
-		for (int j = 0; j < MATRIX_SIZE; j++)
+		for (int col = 0; col < MATRIX_SIZE; col++)
 		{
-			printf(" [%.3f]", matrixPtr[i * MATRIX_SIZE + j]);
+			printf(" [%.3f]", matrixPtr[row * MATRIX_SIZE + col]);
 
-			printf(j == MATRIX_SIZE - 1 ? "\n" : ",");
+			printf(col == MATRIX_SIZE - 1 ? "\n" : ",");
 		}
 
 		setTextColor(DEFAULT);
@@ -80,16 +80,16 @@ void userInputMatrix(float* matrixPtr)
 	char lastChar;
 
 	if (choice == 'Y')
-		for (int i = 0; i < MATRIX_SIZE; i++)
-			for (int j = 0; j < MATRIX_SIZE; j++)
-				while (scanf_s("%f", &matrixPtr[i * MATRIX_SIZE + j]) < 1 || ((lastChar = getchar()) != '\n' && lastChar != ' '))
+		for (int row = 0; row < MATRIX_SIZE; row++)
+			for (int col = 0; col < MATRIX_SIZE; col++)
+				while (scanf_s("%f", &matrixPtr[row * MATRIX_SIZE + col]) < 1 || ((lastChar = getchar()) != '\n' && lastChar != ' '))
 				{
 					throwErrorAndClearInputBuffer("Incorrect input, input should be a floating point number\n");
 
 					printf("Current matrix state: \n");
-					for (int k = 0; k <= i; k++)
+					for (int k = 0; k <= row; k++)
 					{
-						int lastColumnIndex = k == i ? j : MATRIX_SIZE;
+						int lastColumnIndex = k == row ? col : MATRIX_SIZE;
 
 						printf("\t");
 
@@ -101,12 +101,12 @@ void userInputMatrix(float* matrixPtr)
 						}
 					}
 
-					printf("Enter element [%i][%i] again: ", i, j);
+					printf("Enter element [%i][%i] again: ", row, col);
 				}
 	else
-		for (int i = 0; i < MATRIX_SIZE; i++)
-			for (int j = 0; j < MATRIX_SIZE; j++)
-				matrixPtr[i * MATRIX_SIZE + j] = randomRange(0, 1) > 0.5f ? randomRange(0, 100) : -randomRange(0, 100);
+		for (int row = 0; row < MATRIX_SIZE; row++)
+			for (int col = 0; col < MATRIX_SIZE; col++)
+				matrixPtr[row * MATRIX_SIZE + col] = randomRange(0, 1) > 0.5f ? randomRange(0, 100) : -randomRange(0, 100);
 }
 
 int main()
@@ -120,29 +120,29 @@ int main()
 	printf("\nCurrent matrix state:\n");
 	printMatrixWithHighlightedEvenRows(matrix);
 
-	float minElement;
-	float maxElement;
+	float tempMinElement;
+	float tempMaxElement;
 
-	for (int i = 0; i < MATRIX_SIZE; i++)
+	for (int row = 0; row < MATRIX_SIZE; row++)
 	{
-		char isStringEven = (i + 1) % 2 == 0 ? 1 : 0;
+		char isRowEven = (row + 1) % 2 == 0 ? 1 : 0;
 
-		for (int j = 0; j < MATRIX_SIZE; j++)
-			if (isStringEven)
+		for (int col = 0; col < MATRIX_SIZE; col++)
+			if (isRowEven)
 			{
-				if (j == 0 || matrix[i][j] > maxElement)
-					maxElement = matrix[i][j];
+				if (col == 0 || matrix[row][col] > tempMaxElement)
+					tempMaxElement = matrix[row][col];
 
-				if (j == MATRIX_SIZE - 1)
-					sumOfSpecialElements += maxElement;
+				if (col == MATRIX_SIZE - 1)
+					sumOfSpecialElements += tempMaxElement;
 			}
 			else
 			{
-				if (j == 0 || matrix[i][j] < minElement)
-					minElement = matrix[i][j];
+				if (col == 0 || matrix[row][col] < tempMinElement)
+					tempMinElement = matrix[row][col];
 
-				if (j == MATRIX_SIZE - 1)
-					sumOfSpecialElements += minElement;
+				if (col == MATRIX_SIZE - 1)
+					sumOfSpecialElements += tempMinElement;
 			}
 	}
 
