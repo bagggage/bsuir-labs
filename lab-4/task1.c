@@ -77,10 +77,12 @@ void userInputMatrix(float* matrixPtr)
 	while (scanf_s("%c", &choice, 1) < 1 || getchar() != '\n' || (choice != 'N' && choice != 'Y'))
 		throwErrorAndClearInputBuffer("Incorrect input, enter answer in format (Y/N): ");
 
+	char lastChar;
+
 	if (choice == 'Y')
 		for (int i = 0; i < MATRIX_SIZE; i++)
 			for (int j = 0; j < MATRIX_SIZE; j++)
-				while (scanf_s("%f", &matrixPtr[i * MATRIX_SIZE + j]) < 1 || getchar() != '\n')
+				while (scanf_s("%f", &matrixPtr[i * MATRIX_SIZE + j]) < 1 || ((lastChar = getchar()) != '\n' && lastChar != ' '))
 				{
 					throwErrorAndClearInputBuffer("Incorrect input, input should be a floating point number\n");
 
@@ -111,13 +113,16 @@ int main()
 {
 	float matrix[MATRIX_SIZE][MATRIX_SIZE];
 
-	float sumOfElementInEvenStrings = 0;
-	float sumOfElementInOddStrings = 0;
+	float sumOfMaxElementInEvenStrings = 0;
+	float sumOfMinElementInOddStrings = 0;
 
 	userInputMatrix(matrix);
 
 	printf("\nCurrent matrix state:\n");
 	printMatrixWithHighlightedEvenRows(matrix);
+
+	int minElement;
+	int maxElement;
 
 	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
@@ -125,13 +130,25 @@ int main()
 
 		for (int j = 0; j < MATRIX_SIZE; j++)
 			if (isStringEven)
-				sumOfElementInEvenStrings += matrix[i][j];
+			{
+				if (j == 0 || matrix[i][j] > maxElement)
+					maxElement = matrix[i][j];
+
+				if (j == MATRIX_SIZE - 1)
+					sumOfMaxElementInEvenStrings += maxElement;
+			}
 			else
-				sumOfElementInOddStrings += matrix[i][j];
+			{
+				if (j == 0 || matrix[i][j] < minElement)
+					minElement = matrix[i][j];
+
+				if (j == MATRIX_SIZE - 1)
+					sumOfMinElementInOddStrings += minElement;
+			}
 	}
 
-	printf("\nSum of elements in odd strings = %.3f", sumOfElementInOddStrings);
-	printf("\nSum of elements in even strings = %.3f\n", sumOfElementInEvenStrings);
+	printf("\nSum of min elements in odd strings = %.3f", sumOfMinElementInOddStrings);
+	printf("\nSum of max elements in even strings = %.3f\n", sumOfMaxElementInEvenStrings);
 
 	return 0;
 }

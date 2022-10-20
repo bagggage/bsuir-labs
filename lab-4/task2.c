@@ -129,11 +129,13 @@ void userInputMatrix(float* matrixPtr, int* matrixSize)
 
 	while (scanf_s("%c", &choice, 1) < 1 || getchar() != '\n' || (choice != 'N' && choice != 'Y'))
 		throwErrorAndClearInputBuffer("Incorrect input, enter answer in format (Y/N): ");
+ 
+  char lastChar;
 
 	if (choice == 'Y')
 		for (int row = 0; row < matrixSize[ROWS]; row++)
 			for (int col = 0; col < matrixSize[COLUMNS]; col++)
-				while (scanf_s("%f", &matrixPtr[row * MATRIX_MAX_SIZE + col]) < 1)
+				while (scanf_s("%f", &matrixPtr[row * MATRIX_MAX_SIZE + col]) < 1 || ((lastChar = getchar()) != '\n' && lastChar != ' '))
 				{
 					throwErrorAndClearInputBuffer("Incorrect input, input should be a floating point number\n");
 
