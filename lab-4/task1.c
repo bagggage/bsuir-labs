@@ -113,16 +113,15 @@ int main()
 {
 	float matrix[MATRIX_SIZE][MATRIX_SIZE];
 
-	float sumOfMaxElementInEvenStrings = 0;
-	float sumOfMinElementInOddStrings = 0;
+	float sumOfSpecialElements = 0;
 
 	userInputMatrix(matrix);
 
 	printf("\nCurrent matrix state:\n");
 	printMatrixWithHighlightedEvenRows(matrix);
 
-	int minElement;
-	int maxElement;
+	float minElement;
+	float maxElement;
 
 	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
@@ -135,7 +134,7 @@ int main()
 					maxElement = matrix[i][j];
 
 				if (j == MATRIX_SIZE - 1)
-					sumOfMaxElementInEvenStrings += maxElement;
+					sumOfSpecialElements += maxElement;
 			}
 			else
 			{
@@ -143,12 +142,11 @@ int main()
 					minElement = matrix[i][j];
 
 				if (j == MATRIX_SIZE - 1)
-					sumOfMinElementInOddStrings += minElement;
+					sumOfSpecialElements += minElement;
 			}
 	}
 
-	printf("\nSum of min elements in odd strings = %.3f", sumOfMinElementInOddStrings);
-	printf("\nSum of max elements in even strings = %.3f\n", sumOfMaxElementInEvenStrings);
+	printf("\nSum of min elements in odd and max elements in even strings = %.3f\n", sumOfSpecialElements);
 
 	return 0;
 }
