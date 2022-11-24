@@ -16,7 +16,32 @@ void task1()
 
 void task2(int number, int number2)
 {
-	printf("%d", number + number2);
+	printf("Enter string: ");
+
+	char* string = readString();
+
+	printf("Enter char to dublicate: ");
+
+	char c;
+
+	while(scanf_s("%c", &c, 1) < 1 || getchar() != '\n') 
+	{
+		printf("Incorrect input, please try enter char again: ");
+		rewind(stdin);
+	}
+
+	for (int i = 0; string[i] != '\0'; i++)
+	{
+		if (string[i] == c)
+		{
+			insertCharToString(&string, i + 1, c);
+			i++;
+		}
+	}
+
+	printf("Edited string: %s\n", string);
+
+	destroyString(&string);
 }
 
 int main() 

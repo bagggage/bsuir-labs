@@ -56,6 +56,19 @@ void pushBackCharToString(char** string, char c)
 	(*string)[lenght] = '\0';
 }
 
+void insertCharToString(char** string, int position, char c)
+{
+	int length = stringLength(*string) + 1;
+
+	*string = realloc(*string, length + 1);
+	(*string)[length] = '\0';
+
+	for (int i = length - 1; i > position; i--)
+		(*string)[i] = (*string)[i - 1];
+
+	(*string)[position] = c;
+}
+
 bool isDigit(char c) 
 {
 	if (c > 47 && c < 58)

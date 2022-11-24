@@ -7,4 +7,5 @@ char* readString();
 
 int stringLength(char* text);
 void pushBackCharToString(char** string, char c);
+void insertCharToString(char** string, int position, char c);
 int countWordsInString(char* string);

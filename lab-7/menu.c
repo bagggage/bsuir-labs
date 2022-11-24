@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define setColor(color) printf(color)
+
+//Color ID
+#define RED     "\033[1m\033[31m"
+#define DEFAULT "\033[0m"
+
 MenuType initMenu()
 {
 	void** menu = malloc(sizeof(void*) + sizeof(void**) + sizeof(char**));
@@ -68,7 +74,9 @@ void drawMenu(MenuType menu)
 	for (int i = 0; i < maxLenghOfItemName; i++)
 		printf("-");
 
+	setColor(RED);
 	printf("\n0. Exit\n");
+	setColor(DEFAULT);
 
 	for (int i = 0; i < maxLenghOfItemName; i++)
 		printf("-");
@@ -100,14 +108,26 @@ bool handleMenu(MenuType menu)
 		system("cls");
 		executeMenuItem(menu, choise - 1);
 
-		printf("\nDo you want continue?\n-----------\n0. Exit\n1. Continue\n-----------\n");
+		printf("\nDo you want continue?\n-----------\n");
+
+		setColor(RED);
+		printf("0. Exit\n");
+		setColor(DEFAULT);
+
+		printf("1. Continue\n---------- - \n");
 		printf("Choose option: ");
 
 		while (scanf_s("%d", &choise) < 1 || choise < 0 || choise > 1 || getchar() != '\n') 
 		{
 			system("cls");
 
-			printf("Do you want continue?\n-----------\n0. Exit\n1. Continue\n-----------\n");
+			printf("Do you want continue?\n-----------\n");
+
+			setColor(RED);
+			printf("0. Exit\n");
+			setColor(DEFAULT);
+
+			printf("1. Continue\n---------- - \n");
 			printf("Incorrect input, there is no such option, try again: ");
 
 			rewind(stdin);
