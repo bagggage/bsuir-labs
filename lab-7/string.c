@@ -86,7 +86,7 @@ bool isLetter(char c)
 		return 0;
 }
 
-int countWordsInString(char* string) 
+int countWordsInString(const char* string) 
 {
 	int countOfWords = 0;
 
