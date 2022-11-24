@@ -24,7 +24,7 @@ void task2(int number, int number2)
 
 	char c;
 
-	while(scanf_s("%c", &c, 1) < 1 || getchar() != '\n') 
+	while(scanf_s("%c", &c, 1) < 1 || c == '\n' || getchar() != '\n')
 	{
 		printf("Incorrect input, please try enter char again: ");
 		rewind(stdin);

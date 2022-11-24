@@ -30,8 +30,9 @@ char* readString()
 	char* string = initString("");
 	char tempChar;
 
-	while ((tempChar = getchar()) != '\n')
-		pushBackCharToString(&string, tempChar);
+	while (stringLength(string) < 1)
+		while ((tempChar = getchar()) != '\n')
+			pushBackCharToString(&string, tempChar);
 
 	return string;
 }
