@@ -37,7 +37,7 @@ char* readString()
 	return string;
 }
 
-int stringLength(char* text) 
+int stringLength(const char* text) 
 {
 	int length = 0;
 
