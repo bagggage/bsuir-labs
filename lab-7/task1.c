@@ -30,13 +30,10 @@ void task2(int number, int number2)
 		rewind(stdin);
 	}
 
-	for (int i = 0; string[i] != '\0'; i++)
+	for (int i = 0; string[i] != '\0'; string[i] == c ? i += 2 : i++)
 	{
 		if (string[i] == c)
-		{
 			insertCharToString(&string, i + 1, c);
-			i++;
-		}
 	}
 
 	printf("Edited string: %s\n", string);
@@ -48,8 +45,8 @@ int main()
 {
 	MenuType menu = initMenu();
 
-	addMenuItem(menu, "Count words in string", task1);
-	addMenuItem(menu, "Dublicate char in string", task2);
+	addMenuItem(menu, "Count words in string", &task1);
+	addMenuItem(menu, "Dublicate char in string", &task2);
 
 	do
 	{

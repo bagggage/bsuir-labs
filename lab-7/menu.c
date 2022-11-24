@@ -14,8 +14,8 @@ MenuType initMenu()
 {
 	void** menu = malloc(sizeof(void*) + sizeof(void**) + sizeof(char**));
 
-	menu[MENU_ITEMS_FUNCS] = malloc(0);
-	menu[MENU_ITEMS_NAMES] = malloc(0);
+	menu[MENU_ITEMS_FUNCS] = malloc(1);
+	menu[MENU_ITEMS_NAMES] = malloc(1);
 	menu[MENU_SIZE] = 0;
 
 	return menu;
@@ -69,7 +69,7 @@ void drawMenu(MenuType menu)
 	printf("\n");
 
 	for (int i = 0; i < getMenuSize(menu); i++)
-		printf("%d. %s\n", i + 1, menu[MENU_ITEMS_NAMES][i]);
+		printf("%d. %s\n", i + 1, (char*)menu[MENU_ITEMS_NAMES][i]);
 
 	for (int i = 0; i < maxLenghOfItemName; i++)
 		printf("-");
