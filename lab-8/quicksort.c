@@ -21,7 +21,8 @@ int partition(char** strings, int left, int right, int(*compareFunc)(char*))
 
     swap(&strings[pivotIndex], &strings[left]);
 
-    int i = left, j = right;
+    int i = left;
+    int j = right;
 
     while (i < pivotIndex && j > pivotIndex) 
     {
