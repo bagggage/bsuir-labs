@@ -11,30 +11,18 @@ void swap(char** first, char** second)
 int partition(char** strings, int left, int right, int(*compareFunc)(char*))
 {
     int pivot = compareFunc(strings[(left + right) / 2]);
-    int count = 0;
+    int pivotIndex = left;
 
-    for (int i = left + 1; i <= right; i++) 
-        if (compareFunc(strings[i]) <= pivot)
-            count++;
-
-    int pivotIndex = left + count;
-
-    swap(&strings[pivotIndex], &strings[left]);
-
-    int i = left;
-    int j = right;
-
-    while (i < pivotIndex && j > pivotIndex) 
+    for (int i = left; i < right; i++)
     {
-        while (compareFunc(strings[i]) <= pivot)
-            i++;
-
-        while (compareFunc(strings[j]) > pivot)
-            j--;
-
-        if (i < pivotIndex && j > pivotIndex)
-            swap(&strings[i++], &strings[j--]);
+        if (compareFunc(strings[i]) <= pivot)
+        {
+            swap(&strings[i], &strings[pivotIndex]);
+            pivotIndex++;
+        }
     }
+
+    swap(&strings[pivotIndex], &strings[right]);
 
     return pivotIndex;
 }
