@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 		printf("\t%s\n", strings[i - 1]);
 	}
 
-	quickSort(strings, 0, argc - 1 - 1, &stringLength);
+	quickSort(strings, 0, argc - 1 - 1, &countWordsInString);
 
 	printf("\nSorted array of strings:\n");
 
