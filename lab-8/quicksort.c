@@ -10,7 +10,7 @@ void swap(char** first, char** second)
 
 int partition(char** strings, int left, int right, int(*compareFunc)(char*))
 {
-    int pivot = compareFunc(strings[(left + right) / 2]);
+    int pivot = compareFunc(strings[right]);
     int pivotIndex = left;
 
     for (int i = left; i < right; i++)
