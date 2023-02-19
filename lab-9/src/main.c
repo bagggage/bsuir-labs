@@ -41,7 +41,7 @@ char* loadDataFromFile(const char* filePath)
 
 	fseek(file, 0, SEEK_SET);
 
-	data = (char*)malloc(length);
+	data = (char*)malloc(length + 1);
 
 	if (data)
 		fread(data, 1, length, file);
