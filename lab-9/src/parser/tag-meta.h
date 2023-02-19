@@ -5,7 +5,9 @@
 
 #include "bool.h"
 
+#ifndef NULL
 #define NULL 0
+#endif // !NULL
 
 typedef struct TagMeta
 {

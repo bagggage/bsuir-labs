@@ -12,7 +12,7 @@ char* makeStringFromRange(const char* source, unsigned int firstIndex, unsigned 
 char* initEmptyString();
 
 BOOL softStringCompareOnEquality(const char* lhsString, const char* rhsString);
-BOOL isMetaEquals(TagMeta* lhs, TagMeta* rhs);
+BOOL isMetaEquals(const TagMeta* lhs, const TagMeta* rhs);
 
 void removeUnnessesarySymbols(char** string);
 void pushStringInArray(char*** array, const char* string, size_t* arraySize);

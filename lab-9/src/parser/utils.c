@@ -41,7 +41,7 @@ BOOL softStringCompareOnEquality(const char* lhsString, const char* rhsString)
 	return TRUE;
 }
 
-BOOL isMetaEquals(TagMeta* lhs, TagMeta* rhs) 
+BOOL isMetaEquals(const TagMeta* lhs, const TagMeta* rhs) 
 {
 	return (
 		lhs->name == rhs->name &&
@@ -85,7 +85,7 @@ void removeUnnessesarySymbols(char** string)
 
 	int offset = 0;
 
-	while ((*string)[i + offset] == ' ')
+	while (i + offset >= 0 && (*string)[i + offset] == ' ')
 		offset--;
 
 	if (offset < 0)

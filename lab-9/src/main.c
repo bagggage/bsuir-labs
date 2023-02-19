@@ -81,7 +81,7 @@ Videocard* makeVideocardArrayFromParsedData(ParsedTagData itemInfo, ParsedTagDat
 	for (int i = 0; i < *size; i++) 
 	{
 		cards[i].name = duplicateString(itemInfo.values[i * itemInfo.tag->dataIdentifiersCount]);
-		cards[i].price = atof(itemInfo.values[(i * itemInfo.tag->dataIdentifiersCount) + 1]);
+		cards[i].price = (float)atof(itemInfo.values[(i * itemInfo.tag->dataIdentifiersCount) + 1]);
 		cards[i].producer = duplicateString(itemInfo.values[(i * itemInfo.tag->dataIdentifiersCount) + 2]);
 		cards[i].vendor = (strcmp("NVIDIA", itemSpecifics.values[vendorIndex]) == 0 ?
 			VideocardVendor_NVIDIA :

@@ -311,7 +311,7 @@ int findAndCompareIdentifier(const char* identifierName, const char* value, BOOL
 		return TRUE;
 }
 
-int isCurrentTagDesired(TagMeta* desiredTag) 
+int isCurrentTagDesired(const TagMeta* desiredTag) 
 {
 	if (strcmp(context->currentTagName, desiredTag->name) != 0)
 		return 0;
@@ -375,9 +375,10 @@ TagMeta* searchForTags(TagMeta* tags, unsigned int count)
 				return NULL;
 			case 0:
 				continue;
-				break;
 			case 1:
 				return &tags[i];
+			default:
+				assert(FALSE);
 			}
 		}
 	}
@@ -457,7 +458,7 @@ ParsedData parsePage(Parser* parser, const char* rawPageData)
 	ParsedData parsed = initParsedData();
 
 	if (parser->setup->tagsToParse == NULL || parser->setup->tagsCount == 0)
-		return;
+		return parsed;
 
 	context = parser;
 
