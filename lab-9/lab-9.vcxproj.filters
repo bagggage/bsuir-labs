@@ -18,27 +18,33 @@
     <ClCompile Include="src\main.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\parser.c">
+    <ClCompile Include="src\parser\parser.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\tag-meta.c">
+    <ClCompile Include="src\parser\tag-meta.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils.c">
+    <ClCompile Include="src\parser\utils.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\videocard.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\parser.h">
+    <ClInclude Include="src\parser\parser.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\tag-meta.h">
+    <ClInclude Include="src\parser\tag-meta.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils.h">
+    <ClInclude Include="src\parser\utils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\bool.h">
+    <ClInclude Include="src\parser\bool.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\videocard.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

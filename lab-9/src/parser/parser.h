@@ -68,7 +68,7 @@ typedef struct ParsedTagData
 /*Struct consists all values parsed from all tags included in ParseSetup.
 Don't operate directly.
 Use special functions to get needed values from different tags.
-Delete it using special free function after work is done.*/
+Delete it using destroy function after work is done.*/
 typedef struct ParsedData
 {
 	ParsedTagData* data;
@@ -83,3 +83,6 @@ Parser initParser();
 
 void addTagToParse(ParseSetup* setup, TagMeta* tag);
 void destroyParsedData(ParsedData* data);
+void destroyParseSetup(ParseSetup* setup);
+
+ParsedTagData getDataForTag(ParsedData* data, TagMeta* tag);

@@ -128,15 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.c" />
-    <ClCompile Include="src\parser.c" />
-    <ClCompile Include="src\utils.c" />
-    <ClCompile Include="src\tag-meta.c" />
+    <ClCompile Include="src\parser\parser.c" />
+    <ClCompile Include="src\parser\utils.c" />
+    <ClCompile Include="src\parser\tag-meta.c" />
+    <ClCompile Include="src\videocard.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\bool.h" />
-    <ClInclude Include="src\parser.h" />
-    <ClInclude Include="src\utils.h" />
-    <ClInclude Include="src\tag-meta.h" />
+    <ClInclude Include="src\parser\bool.h" />
+    <ClInclude Include="src\parser\parser.h" />
+    <ClInclude Include="src\videocard.h" />
+    <ClInclude Include="src\parser\utils.h" />
+    <ClInclude Include="src\parser\tag-meta.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

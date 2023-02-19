@@ -13,7 +13,7 @@ TagMeta makeTag(const char* name, const char* class)
 		.specificIdentifierValue = NULL,
 		.dataIdentifiers = NULL,
 		.dataIdentifiersCount = 0,
-		.isClassStongCompare = TRUE,
+		.isClassStrongCompare = TRUE,
 		.isIdentifierStrongCompare = TRUE,
 		.isShouldGetFirstDeeperData = FALSE,
 		.isShouldGetDataFromIdentifiers = FALSE

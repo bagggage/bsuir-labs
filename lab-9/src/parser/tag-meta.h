@@ -19,7 +19,7 @@ typedef struct TagMeta
 
 	/*If true class name should be equals to 'tagClass', to pass validation.
 	Otherwise parser compare only first part of the class name.*/
-	BOOL isClassStongCompare;
+	BOOL isClassStrongCompare;
 
 	/*If true all identifier should be equals to 'specificIdentifierValue', to pass validation.
 	Otherwise parser compare only first part of identifier.*/

@@ -88,16 +88,7 @@ BOOL skipEmptySymbols()
 BOOL skipTo(char c) 
 {
 	while (isCurrentSymbolNot(c) && !isEndOfSource)
-	{
 		context->cursorPos++;
-		//quotesCheck();
-
-		//while (isInQuotes() && !isEndOfSource)
-		//{
-		//	context->cursorPos++;
-		//	quotesCheck();
-		//}
-	}
 
 	return !isEndOfSource;
 }
@@ -106,7 +97,7 @@ BOOL nextTag()
 {
 	while(!isEndOfSource)
 	{
-		if (/*isInQuotes() == FALSE &&*/ isCurrentSymbol('<'))
+		if (isCurrentSymbol('<'))
 		{
 			context->cursorPos++;
 
@@ -188,7 +179,7 @@ BOOL skipCurrentTag()
 /*Returns: 
 -1: end of source
 0: identifier is not found
-Other positive value: Offset of the end(char after identifier name) to the cursor pos
+Other positive value: Offset of the identifier end(char after identifier name) to the cursor pos
 */
 int findTagIdentifier(const char* identifierName) 
 {
@@ -302,6 +293,24 @@ int isIdentifierValueEquals(int identifierOffset, const char* value, BOOL isStro
 	return result;
 }
 
+/*Returns:
+-1: end of source
+0: value is not equals
+1: value is equals
+*/
+int findAndCompareIdentifier(const char* identifierName, const char* value, BOOL isStrongCompare) 
+{
+	int offset = findTagIdentifier(identifierName);
+
+	if (offset < 1)
+		return offset;
+
+	if (value != NULL)
+		return isIdentifierValueEquals(offset, value, isStrongCompare);
+	else
+		return TRUE;
+}
+
 int isCurrentTagDesired(TagMeta* desiredTag) 
 {
 	if (strcmp(context->currentTagName, desiredTag->name) != 0)
@@ -309,12 +318,7 @@ int isCurrentTagDesired(TagMeta* desiredTag)
 
 	if (desiredTag->class != NULL)
 	{
-		int result = findTagIdentifier("class");
-
-		if (result < 1)
-			return result;
-
-		result = isIdentifierValueEquals(result, desiredTag->class, desiredTag->isClassStongCompare);
+		int result = findAndCompareIdentifier("class", desiredTag->class, desiredTag->isClassStrongCompare);
 
 		if (result < 1)
 			return result;
@@ -322,18 +326,10 @@ int isCurrentTagDesired(TagMeta* desiredTag)
 
 	if (desiredTag->specificIdentifier != NULL)
 	{
-		int result = findTagIdentifier(desiredTag->specificIdentifier);
+		int result = findAndCompareIdentifier(desiredTag->specificIdentifier, desiredTag->specificIdentifierValue, desiredTag->isIdentifierStrongCompare);
 
 		if (result < 1)
 			return result;
-
-		if (desiredTag->specificIdentifierValue != NULL)
-		{
-			result = isIdentifierValueEquals(result, desiredTag->specificIdentifierValue, desiredTag->isIdentifierStrongCompare);
-
-			if (result < 1)
-				return result;
-		}
 	}
 
 	if (desiredTag->isShouldGetDataFromIdentifiers && desiredTag->dataIdentifiersCount > 0) 
@@ -559,4 +555,24 @@ void destroyParsedData(ParsedData* data)
 	free(data->data);
 
 	data->size = 0;
+}
+
+void destroyParseSetup(ParseSetup* setup) 
+{
+	assert(setup != NULL);
+
+	if (setup->tagsToParse != NULL)
+		free(setup->tagsToParse);
+
+	setup->tagsCount = 0;
+}
+
+ParsedTagData getDataForTag(ParsedData* data, TagMeta* tag) 
+{
+	assert(data != NULL);
+	assert(tag != NULL);
+
+	for (int i = 0; i < data->size; i++)
+		if (isMetaEquals(data->data[i].tag, tag))
+			return data->data[i];
 }

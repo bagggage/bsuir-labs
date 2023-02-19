@@ -50,7 +50,7 @@ BOOL isMetaEquals(TagMeta* lhs, TagMeta* rhs)
 		lhs->specificIdentifierValue == rhs->specificIdentifierValue &&
 		lhs->dataIdentifiers == rhs->dataIdentifiers &&
 		lhs->dataIdentifiersCount == rhs->dataIdentifiersCount &&
-		lhs->isClassStongCompare == rhs->isClassStongCompare &&
+		lhs->isClassStrongCompare == rhs->isClassStrongCompare &&
 		lhs->isIdentifierStrongCompare == rhs->isIdentifierStrongCompare &&
 		lhs->isShouldGetDataFromIdentifiers == rhs->isShouldGetDataFromIdentifiers &&
 		lhs->isShouldGetFirstDeeperData == rhs->isShouldGetFirstDeeperData
