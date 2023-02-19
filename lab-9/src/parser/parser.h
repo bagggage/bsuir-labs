@@ -76,13 +76,13 @@ typedef struct ParsedData
 
 } ParsedData;
 
-ParsedData parsePage(Parser* parser, const char* rawPageData);
+ParsedData parsePage(const Parser* parser, const char* rawPageData);
 
 ParseSetup makeSetup();
 Parser initParser();
 
-void addTagToParse(ParseSetup* setup, TagMeta* tag);
+void addTagToParse(ParseSetup* setup, const TagMeta* tag);
 void destroyParsedData(ParsedData* data);
 void destroyParseSetup(ParseSetup* setup);
 
-ParsedTagData getDataForTag(ParsedData* data, TagMeta* tag);
+ParsedTagData getDataForTag(const ParsedData* data, const TagMeta* tag);

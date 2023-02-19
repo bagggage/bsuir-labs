@@ -59,16 +59,24 @@ BOOL isMetaEquals(const TagMeta* lhs, const TagMeta* rhs)
 
 void removeCharsInString(char** string, int first, int last) 
 {
+	if (first > last)
+		return;
+
 	int stringLength = strlen(*string);
 	int step = last - first + 1;
 
 	for (int i = first; i <= stringLength - step; i++)
 		(*string)[i] = (*string)[i + step];
 
-	(*string) = realloc(*string, stringLength - step + 1);
-
-	if (*string == NULL)
-		exit(1);
+	if (stringLength - step + 1 > 0)
+	{
+		(*string) = realloc(*string, stringLength - step + 1);
+	}
+	else
+	{
+		free(*string);
+		(*string) = NULL;
+	}
 }
 
 void removeUnnessesarySymbols(char** string) 
@@ -85,7 +93,7 @@ void removeUnnessesarySymbols(char** string)
 
 	int offset = 0;
 
-	while (i + offset >= 0 && (*string)[i + offset] == ' ')
+	while (abs(offset) < i && (*string)[i + offset] == ' ')
 		offset--;
 
 	if (offset < 0)
@@ -111,7 +119,7 @@ void pushStringInArray(char*** array, const char* string, size_t* arraySize)
 	(*array)[*arraySize - 1] = string;
 }
 
-void pushParsedTagData(ParsedData* parsedData, ParsedTagData tagData) 
+void pushParsedTagData(ParsedData* parsedData, const ParsedTagData tagData) 
 {
 	assert(parsedData != NULL);
 
@@ -128,7 +136,7 @@ void pushParsedTagData(ParsedData* parsedData, ParsedTagData tagData)
 	parsedData->data[parsedData->size - 1] = tagData;
 }
 
-void pushParsedValueForTag(ParsedData* parsedData, TagMeta* tag, const char* value) 
+void pushParsedValueForTag(ParsedData* parsedData, const TagMeta* tag, const char* value) 
 {
 	assert(parsedData != NULL);
 	assert(tag != NULL);
@@ -154,7 +162,7 @@ ParsedData initParsedData()
 	return parsedData;
 }
 
-ParsedTagData initParsedTagData(TagMeta* tag) 
+ParsedTagData initParsedTagData(const TagMeta* tag) 
 {
 	ParsedTagData parsedTagData =
 	{

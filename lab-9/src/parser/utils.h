@@ -16,8 +16,8 @@ BOOL isMetaEquals(const TagMeta* lhs, const TagMeta* rhs);
 
 void removeUnnessesarySymbols(char** string);
 void pushStringInArray(char*** array, const char* string, size_t* arraySize);
-void pushParsedTagData(ParsedData* parsedData, ParsedTagData tagData);
-void pushParsedValueForTag(ParsedData* parsedData, TagMeta* tag, const char* value);
+void pushParsedTagData(ParsedData* parsedData, const ParsedTagData tagData);
+void pushParsedValueForTag(ParsedData* parsedData, const TagMeta* tag, const char* value);
 
 ParsedData initParsedData();
-ParsedTagData initParsedTagData(TagMeta* tag);
+ParsedTagData initParsedTagData(const TagMeta* tag);

@@ -449,7 +449,7 @@ BOOL parseCurrentTag(ParsedData* parsedData, TagMeta* meta)
 	return TRUE;
 }
 
-ParsedData parsePage(Parser* parser, const char* rawPageData) 
+ParsedData parsePage(const Parser* parser, const char* rawPageData) 
 {
 	assert(parser != NULL);
 	assert(parser->setup != NULL);
@@ -520,7 +520,7 @@ Parser initParser()
 	return parser;
 }
 
-void addTagToParse(ParseSetup* setup, TagMeta* tag)
+void addTagToParse(ParseSetup* setup, const TagMeta* tag)
 {
 	assert(setup != NULL);
 	assert(tag != NULL);
@@ -568,7 +568,7 @@ void destroyParseSetup(ParseSetup* setup)
 	setup->tagsCount = 0;
 }
 
-ParsedTagData getDataForTag(ParsedData* data, TagMeta* tag) 
+ParsedTagData getDataForTag(const ParsedData* data, const TagMeta* tag) 
 {
 	assert(data != NULL);
 	assert(tag != NULL);
