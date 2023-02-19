@@ -22,10 +22,10 @@ int main(int argc, char** argv)
 	printf("\nSorted array of strings:\n");
 
 	for (int i = 0; i < argc - 1; i++)
-	{
 		printf("\t%s\n", strings[i]);
+
+	for (int i = 0; i < argc - 1; i++)
 		free(strings[i]);
-	}
 
 	free(strings);
 
