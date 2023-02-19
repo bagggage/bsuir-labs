@@ -38,7 +38,7 @@ int getMenuSize(MenuType menu)
 	return ((int)menu[MENU_SIZE]);
 }
 
-void executeMenuItem(MenuType menu, int functionIndex) 
+void executeMenuItem(MenuType menu, unsigned int functionIndex) 
 {
 	((MenuItem)menu[MENU_ITEMS_FUNCS][functionIndex])();
 }

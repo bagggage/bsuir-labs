@@ -18,21 +18,15 @@ char* initString(const char* text)
 	return string;
 }
 
-void destroyString(char** stringPtr) 
-{
-	free(*stringPtr);
-
-	*stringPtr = NULL;
-}
-
 char* readString() 
 {
-	char* string = initString("");
-	char tempChar;
+	char* string = calloc(256, sizeof(char));
 
-	while (stringLength(string) < 1)
-		while ((tempChar = getchar()) != '\n')
-			pushBackCharToString(&string, tempChar);
+	gets_s(string, 255);
+
+	int size = stringLength(string);
+
+	string = realloc(string, size + 1);
 
 	return string;
 }

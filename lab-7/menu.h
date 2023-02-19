@@ -12,7 +12,7 @@ MenuType initMenu();
 void destroyMenu(MenuType* menu);
 
 int getMenuSize(MenuType menu);
-void executeMenuItem(MenuType menu, int functionIndex);
+void executeMenuItem(MenuType menu, unsigned int functionIndex);
 void addMenuItem(MenuType menu, const char* name, void (*function)(void));
 void drawMenu(MenuType menu);
 bool handleMenu(MenuType menu);
