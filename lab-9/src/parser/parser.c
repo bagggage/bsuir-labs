@@ -386,7 +386,7 @@ const TagMeta* searchForTags(const TagMeta* tags, unsigned int count)
 	return isNotEndOfSource;
 }
 
-BOOL findTag(TagMeta* tag) 
+BOOL findTag(const TagMeta* tag) 
 {
 	assert(tag != NULL);
 	assert(tag->name != NULL);
@@ -479,7 +479,7 @@ ParsedData parsePage(const Parser* parser, const char* rawPageData)
 
 	while (context->lastClosedChildTreeDeepth >= parentTagChildTreeState && !isEndOfSource)
 	{
-		TagMeta* findedTag = searchForTags(context->setup->tagsToParse, context->setup->tagsCount);
+		const TagMeta* findedTag = searchForTags(context->setup->tagsToParse, context->setup->tagsCount);
 
 		if (findedTag == NULL)
 			break;
