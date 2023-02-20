@@ -346,7 +346,7 @@ int isCurrentTagDesired(const TagMeta* desiredTag)
 	return 1;
 }
 
-TagMeta* searchForTags(TagMeta* tags, unsigned int count) 
+const TagMeta* searchForTags(const TagMeta* tags, unsigned int count) 
 {
 	assert(tags != NULL);
 
@@ -394,7 +394,7 @@ BOOL findTag(TagMeta* tag)
 	return (searchForTags(tag, 1) != NULL);
 }
 
-BOOL parseCurrentTag(ParsedData* parsedData, TagMeta* meta) 
+BOOL parseCurrentTag(ParsedData* parsedData, const TagMeta* meta) 
 {
 	assert(parsedData != NULL);
 	assert(meta != NULL);
@@ -576,4 +576,6 @@ ParsedTagData getDataForTag(const ParsedData* data, const TagMeta* tag)
 	for (int i = 0; i < data->size; i++)
 		if (isMetaEquals(data->data[i].tag, tag))
 			return data->data[i];
+
+	return initParsedTagData(tag);
 }

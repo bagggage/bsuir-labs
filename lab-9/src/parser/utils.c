@@ -89,6 +89,9 @@ void removeUnnessesarySymbols(char** string)
 	if (i > 0)
 		removeCharsInString(string, 0, i - 1);
 
+	if (*string == NULL)
+		return;
+
 	i = strlen(*string) - 1;
 
 	int offset = 0;

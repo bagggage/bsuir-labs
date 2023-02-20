@@ -88,7 +88,6 @@ Videocard* makeVideocardArrayFromParsedData(ParsedTagData itemInfo, ParsedTagDat
 			VideocardVendor_AMD
 			);
 
-
 		nextVendorIndex(&vendorIndex, itemSpecifics);
 	}
 
