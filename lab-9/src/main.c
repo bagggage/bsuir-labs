@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "parser/parser.h"
+#include "console-menu/menu-console-handler.h"
 #include "videocard.h"
 
 #pragma region Utils
@@ -18,6 +19,9 @@ char* duplicateString(const char* source)
 {
 	size_t length = strlen(source);
 	char* duplicate = malloc(length + 1);
+
+	if (duplicate == NULL)
+		fatalError(2, "Memory allocation failed while duplicating string");
 
 	strcpy(duplicate, source);
 
@@ -135,6 +139,12 @@ void setCodePageUTF8()
 	system("cls");
 }
 
+void showVideocardsArray(const Videocard* cards, size_t count) 
+{
+	for (int i = 0; i < count; i++)
+		videocardLogInfo(&cards[i]);
+}
+
 int main()
 {
 	setCodePageUTF8();
@@ -146,16 +156,49 @@ int main()
 
 	parse21VekSearchPageOnVideocards(htmlPage, &cards, &count);
 
-	for (int i = 0; i < count; i++)
-		videocardLogInfo(&cards[i]);
+	Menu menu = initMenu();
+	Menu subMenu = initMenu();
+
+	subMenu.isSubmenu = TRUE;
+
+	addMenuItem(&subMenu, "Sort by name",		funcBind(sortVideocards, 3, cards, count, SortType_NAME));
+	addMenuItem(&subMenu, "Sort by producer",	funcBind(sortVideocards, 3, cards, count, SortType_PRODUCER));
+	addMenuItem(&subMenu, "Sort by price",		funcBind(sortVideocards, 3, cards, count, SortType_PRICE));
+	addMenuItem(&subMenu, "Sort by vendor",		funcBind(sortVideocards, 3, cards, count, SortType_VENDOR));
+
+	addMenuItem(&menu, "Show parsed items", funcBind(&showVideocardsArray, 2, cards, count));
+	addSubmenu(&menu, "Use sorting", &subMenu);
+
+	while (handleMenuInteraction(&menu) == 0)
+	{
+		printf("\nDo you want to conitnue? (Y\\N)\n");
+
+		char choise;
+
+		while (scanf_s("%c", &choise, 1) < 1 || (choise != 'Y' && choise != 'N'))
+		{
+			printf("\nIncorrect input, please choose (Y\\N): ");
+			rewind(stdin);
+		}
+
+		if (choise == 'N')
+			break;
+
+		system("cls");
+	}
 
 	for (int i = 0; i < count; i++)
 	{
-		free(cards[i].name);
-		free(cards[i].producer);
+		if (cards[i].name != NULL)
+			free(cards[i].name);
+		if (cards[i].producer != NULL)
+			free(cards[i].producer);
 	}
 
 	free(cards);
+
+	destroyMenu(&menu);
+	destroyMenu(&subMenu);
 
 	return 0;
 }

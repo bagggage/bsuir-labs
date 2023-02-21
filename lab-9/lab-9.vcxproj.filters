@@ -30,6 +30,12 @@
     <ClCompile Include="src\videocard.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\console-menu\menu.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\console-menu\menu-console-handler.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\parser\parser.h">
@@ -45,6 +51,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\videocard.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\console-menu\menu.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\console-menu\menu-console-handler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
