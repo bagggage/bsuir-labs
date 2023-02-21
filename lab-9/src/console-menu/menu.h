@@ -1,8 +1,8 @@
 #pragma once
 
-#include <stdlib.h>
-
 #include "../parser/bool.h"
+
+typedef unsigned long long size_t;
 
 typedef void(*FunctionPtr)(void);
 typedef void** Args;
