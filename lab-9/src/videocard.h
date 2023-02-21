@@ -1,7 +1,5 @@
 #pragma once
 
-typedef unsigned long long size_t;
-
 typedef enum VideocardVendor 
 {
 	VideocardVendor_NVIDIA,
@@ -28,5 +26,5 @@ typedef struct Videocard
 
 } Videocard;
 
-void videocardLogInfo(Videocard* card);
+void videocardLogInfo(const Videocard* card);
 void sortVideocards(Videocard* cards, size_t count, SortType sortType);

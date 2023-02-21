@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-void videocardLogInfo(Videocard* card) 
+void videocardLogInfo(const Videocard* card) 
 {
 	printf("%s\n%s %s\nPrice: %.2f BYN\n\n",
 		card->name,
@@ -48,7 +48,7 @@ int strComparator(void* context, const void* lhs, const void* rhs)
 	return -1;
 }
 
-void sortVideocards(const Videocard* cards, size_t count, SortType sortType)
+void sortVideocards(Videocard* cards, size_t count, SortType sortType)
 {
 	switch (sortType)
 	{
