@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+
 #include "../parser/bool.h"
 
 typedef void(*FunctionPtr)(void);
@@ -39,5 +41,5 @@ FunctionBind funcBind(FunctionPtr function, unsigned int argsCount, ...);
 
 void destroyMenu(Menu* menu);
 void addMenuItem(Menu* menu, const char* name, FunctionBind function);
-void addSubmenu(Menu* menu, const Menu* submenu);
+void addSubmenu(Menu* menu, const char* name, const Menu* submenu);
 void executeFunction(const FunctionBind* function);

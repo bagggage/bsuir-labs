@@ -1,7 +1,6 @@
 #include "menu.h"
 
 #include <assert.h>
-#include <stdlib.h>
 #include <stdarg.h>
 
 Menu initMenu() 
