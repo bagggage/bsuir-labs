@@ -14,7 +14,8 @@ typedef enum SortType
 	SortType_PRICE,
 	SortType_NAME,
 	SortType_PRODUCER,
-	SortType_VENDOR
+	SortType_VENDOR,
+	SortType_PRICE_VENDOR
 
 } SortType;
 

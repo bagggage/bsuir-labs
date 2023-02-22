@@ -161,10 +161,11 @@ int main()
 
 	subMenu.isSubmenu = TRUE;
 
-	addMenuItem(&subMenu, "Sort by name",		funcBind(&sortVideocards, 3, cards, count, SortType_NAME));
-	addMenuItem(&subMenu, "Sort by producer",	funcBind(&sortVideocards, 3, cards, count, SortType_PRODUCER));
-	addMenuItem(&subMenu, "Sort by price",		funcBind(&sortVideocards, 3, cards, count, SortType_PRICE));
-	addMenuItem(&subMenu, "Sort by vendor",		funcBind(&sortVideocards, 3, cards, count, SortType_VENDOR));
+	addMenuItem(&subMenu, "Sort by name",				funcBind(&sortVideocards, 3, cards, count, SortType_NAME));
+	addMenuItem(&subMenu, "Sort by producer",			funcBind(&sortVideocards, 3, cards, count, SortType_PRODUCER));
+	addMenuItem(&subMenu, "Sort by price",				funcBind(&sortVideocards, 3, cards, count, SortType_PRICE));
+	addMenuItem(&subMenu, "Sort by price and vendor",	funcBind(&sortVideocards, 3, cards, count, SortType_PRICE_VENDOR));
+	addMenuItem(&subMenu, "Sort by vendor",				funcBind(&sortVideocards, 3, cards, count, SortType_VENDOR));
 
 	addMenuItem(&menu, "Show parsed items", funcBind(&showVideocardsArray, 2, cards, count));
 	addSubmenu(&menu, "Use sorting", &subMenu);

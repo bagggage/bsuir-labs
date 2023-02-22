@@ -34,18 +34,39 @@ int strComparator(void* context, const void* lhs, const void* rhs)
 {
 	SortType type = *(SortType*)context;
 
-	const char* left = (context == SortType_NAME ? ((const Videocard*)lhs)->name : ((const Videocard*)lhs)->producer);
-	const char* right = (context == SortType_NAME ? ((const Videocard*)rhs)->name : ((const Videocard*)rhs)->producer);
+	const char* left = (type == SortType_NAME ? ((const Videocard*)lhs)->name : ((const Videocard*)lhs)->producer);
+	const char* right = (type == SortType_NAME ? ((const Videocard*)rhs)->name : ((const Videocard*)rhs)->producer);
 
 	int i = 0;
 
 	while (left[i] != '\0' && right[i] != '\0')
+	{
 		if (left[i] > right[i])
 			return 1;
 		else if (left[i] < right[i])
 			return -1;
 
+		i++;
+	}
+
 	return -1;
+}
+
+int vendorPriceComparator(void* context, const void* lhs, const void* rhs) 
+{
+	SortType type = *(SortType*)context;
+
+	const Videocard* left = (const Videocard*)lhs;
+	const Videocard* right = (const Videocard*)rhs;
+
+	if (left->vendor > right->vendor)
+		return 1;
+	else if (left->vendor < right->vendor)
+		return -1;
+	else if (left->price > right->price)
+		return 1;
+	else
+		return -1;
 }
 
 void sortVideocards(Videocard* cards, size_t count, SortType sortType)
@@ -63,6 +84,9 @@ void sortVideocards(Videocard* cards, size_t count, SortType sortType)
 		break;
 	case SortType_VENDOR:
 		qsort_s(cards, count, sizeof(Videocard), &vendorComparator, &sortType);
+		break;
+	case SortType_PRICE_VENDOR:
+		qsort_s(cards, count, sizeof(Videocard), &vendorPriceComparator, &sortType);
 		break;
 	default:
 		assert(0);
