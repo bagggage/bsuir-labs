@@ -27,6 +27,12 @@ char* duplicateString(const char* source)
 
 	return duplicate;
 }
+
+void throwErrorAndClearInputBuffer(const char* msg) 
+{
+	printf(msg);
+	rewind(stdin);
+}
 #pragma endregion
 
 char* loadDataFromFile(const char* filePath)
@@ -145,6 +151,18 @@ void showVideocardsArray(const Videocard* cards, size_t count)
 		videocardLogInfo(&cards[i]);
 }
 
+void removeVideocardFromArrayWithIndex(Videocard** cards, size_t* size) 
+{
+	int cardNumber;
+
+	printf("Cards count: %d\nEnter number of card, that should be deleted: ", (int)*size);
+
+	while (scanf_s("%d", &cardNumber) < 1 || cardNumber < 1 || cardNumber >= *size || getchar() != '\n')
+		throwErrorAndClearInputBuffer("\nIncorrect input, number should be less then array size and rather then 0: ");
+
+	removeVideocardFromArray(cards, size, cardNumber - 1);
+}
+
 int main()
 {
 	setCodePageUTF8();
@@ -168,6 +186,7 @@ int main()
 	addMenuItem(&subMenu, "Sort by vendor",				funcBind(&sortVideocards, 3, cards, count, SortType_VENDOR));
 
 	addMenuItem(&menu, "Show parsed items", funcBind(&showVideocardsArray, 2, cards, count));
+	addMenuItem(&menu, "Delete item", funcBind(&removeVideocardFromArrayWithIndex, 2, &cards, &count));
 	addSubmenu(&menu, "Use sorting", &subMenu);
 
 	while (handleMenuInteraction(&menu) == 0)
@@ -177,10 +196,7 @@ int main()
 		char choise;
 
 		while (scanf_s("%c", &choise, 1) < 1 || (choise != 'Y' && choise != 'N'))
-		{
-			printf("\nIncorrect input, please choose (Y\\N): ");
-			rewind(stdin);
-		}
+			throwErrorAndClearInputBuffer("\nIncorrect input, please choose (Y\\N): ");
 
 		if (choise == 'N')
 			break;

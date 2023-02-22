@@ -30,4 +30,5 @@ typedef struct Videocard
 } Videocard;
 
 void videocardLogInfo(const Videocard* card);
+void removeVideocardFromArray(Videocard** array, size_t* size, unsigned int index);
 void sortVideocards(Videocard* cards, size_t count, SortType sortType);

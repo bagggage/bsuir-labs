@@ -14,6 +14,25 @@ void videocardLogInfo(const Videocard* card)
 	);
 }
 
+void removeVideocardFromArray(Videocard** array, size_t* size, unsigned int index)
+{
+	assert(array != NULL);
+	assert(*size != NULL);
+
+	if (index >= *size)
+		return;
+
+	for (int i = index; i < *size - 1; i++)
+		(*array)[i] = (*array)[i + 1];
+
+	(*size)--;
+
+	(*array) = realloc(*array, (*size) * sizeof(Videocard));
+
+	if (*array == NULL)
+		exit(2);
+}
+
 int priceComparator(void* context, const void* lhs, const void* rhs) 
 {
 	if (((const Videocard*)lhs)->price > ((const Videocard*)rhs)->price)
