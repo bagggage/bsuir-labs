@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+
 typedef enum VideocardVendor 
 {
 	VideocardVendor_NVIDIA,

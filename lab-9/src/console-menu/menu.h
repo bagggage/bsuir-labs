@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+
 #include "../parser/bool.h"
 
 typedef void(*FunctionPtr)(void);
