@@ -245,13 +245,13 @@ void fileWriteDictionary(const Dictionary* dictionary, FILE* file)
 
 		while (pair != NULL)
 		{
-			if (dictionaryLookUp(&tempPairs, pair->key) != NULL ||
-				dictionaryLookUp(&tempPairs, pair->value) != NULL)
+			if (dictionaryLookUp(&tempPairs, pair->key) == NULL && dictionaryLookUp(&tempPairs, pair->value) == NULL)
+			{
+				fprintf(file, "%s/%s\n", pair->key, pair->value);
 
-			fprintf(file, "%s/%s\n", pair->key, pair->value);
-
-			dictionaryInsert(&tempPairs, pair->key, pair->value);
-			dictionaryInsert(&tempPairs, pair->value, pair->key);
+				dictionaryInsert(&tempPairs, pair->key, pair->value);
+				dictionaryInsert(&tempPairs, pair->value, pair->key);
+			}
 
 			pair = pair->next;
 		}
