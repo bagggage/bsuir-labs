@@ -30,7 +30,7 @@ char* duplicateString(const char* source)
 
 void throwErrorAndClearInputBuffer(const char* msg) 
 {
-	printf(msg);
+	printf("%s", msg);
 	rewind(stdin);
 }
 #pragma endregion
