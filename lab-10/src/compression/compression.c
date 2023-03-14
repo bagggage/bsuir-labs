@@ -27,7 +27,7 @@ void compress(FILE* file, const char* compressedFileDirectory)
 	if (fopen_s(&compressedFile, compressedFileDirectory, "w+") != 0)
 	{
 		perror("File open error");
-		return 1;
+		return;
 	}
 
 	fseek(file, 0, SEEK_SET);

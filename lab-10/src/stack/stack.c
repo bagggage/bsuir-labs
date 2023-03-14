@@ -58,7 +58,7 @@ void stackPop(Stack* stack)
 	stack->top = top->previous;
 
 	if (stack->top == NULL)
-		stack->first == NULL;
+		stack->first = NULL;
 
 	free(top);
 }

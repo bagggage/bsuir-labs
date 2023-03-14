@@ -13,7 +13,7 @@ void decompress(FILE* file, const char* decompressedFileDirectory)
 	if (fopen_s(&decompressedFile, decompressedFileDirectory, "w+") != 0)
 	{
 		perror("File open error");
-		return 1;
+		return;
 	}
 
 	fillFileAndReplaceWords(&dictionary, file, decompressedFile);
