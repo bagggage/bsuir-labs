@@ -185,7 +185,7 @@ void makeReplacementDictionary(Dictionary* dictionary, FILE* file)
 
 const char* getCurrentWord(const char* string, const char* separators) 
 {
-	char* lexem = string;
+	const char* lexem = string;
 
 	while (lexem != NULL && isWord(lexem) == FALSE)
 		lexem = strtok(string, separators);
@@ -235,7 +235,7 @@ char* getWordFromLexem(const char* lexemBegin, const char* lexemEnd)
 	}
 }
 
-void fileWriteDictionary(Dictionary* dictionary, FILE* file) 
+void fileWriteDictionary(const Dictionary* dictionary, FILE* file) 
 {
 	Dictionary tempPairs = dictionaryInit();
 
@@ -245,7 +245,8 @@ void fileWriteDictionary(Dictionary* dictionary, FILE* file)
 
 		while (pair != NULL)
 		{
-			if (dictionaryLookUp(&tempPairs, pair->key) != NULL || dictionaryLookUp(&tempPairs, pair->value) != NULL)
+			if (dictionaryLookUp(&tempPairs, pair->key) != NULL ||
+				dictionaryLookUp(&tempPairs, pair->value) != NULL)
 
 			fprintf(file, "%s/%s\n", pair->key, pair->value);
 
@@ -280,7 +281,7 @@ void fileReadDictionary(Dictionary* dictionary, FILE* file)
 		char* wordLhs = calloc(i + 1, sizeof(char));
 		strncpy(wordLhs, string, i);
 
-		int wordRhsStart = ++i;
+		int wordRhsStart = (++i);
 
 		while (string[i] != '\n')
 			i++;
@@ -318,13 +319,13 @@ void fillFileAndReplaceWords(Dictionary* dictionary, FILE* source, FILE* file)
 
 			if (string[i] != '\0')
 			{
-				char* lexemBegin = string + i;
-				char* lexemEnd = getLexem(lexemBegin);
+				const char* lexemBegin = string + i;
+				const char* lexemEnd = getLexem(lexemBegin);
 				char* word;
 
 				if ((word = getWordFromLexem(lexemBegin, lexemEnd)) != NULL)
 				{
-					char* replacement;
+					const char* replacement;
 
 					if ((replacement = dictionaryLookUp(dictionary, word)) != NULL)
 						fwrite(replacement, sizeof(char), strlen(replacement), file);

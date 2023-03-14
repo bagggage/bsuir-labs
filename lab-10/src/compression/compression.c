@@ -2,7 +2,7 @@
 
 #include "algorithm.h"
 
-void printDictionary(Dictionary* dictionary) 
+void printDictionary(const Dictionary* dictionary) 
 {
 	for (int i = 0; i < HASH_TABLE_SIZE; i++)
 	{

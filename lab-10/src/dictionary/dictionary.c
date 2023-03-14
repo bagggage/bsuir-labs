@@ -24,15 +24,15 @@ unsigned long hashString(const char* string)
 	unsigned long hash = 5381;
 	char c;
 
-	while (c = *string++)
+	while ((c = *string++))
 		hash = ((hash << 5) + hash) + c;
 
 	return hash;
 }
 
-const char* dictionaryLookUp(Dictionary* dictionary, const char* key)
+const char* dictionaryLookUp(const Dictionary* dictionary, const char* key)
 {
-	Pair* pair = dictionaryLookUpPair(dictionary, key);
+	const Pair* pair = dictionaryLookUpPair(dictionary, key);
 
 	if (pair != NULL)
 		return pair->value;
@@ -40,7 +40,7 @@ const char* dictionaryLookUp(Dictionary* dictionary, const char* key)
 	return NULL;
 }
 
-Pair* dictionaryLookUpPair(Dictionary* dictionary, const char* key) 
+Pair* dictionaryLookUpPair(const Dictionary* dictionary, const char* key) 
 {
 	assert(dictionary != NULL);
 	assert(key != NULL);

@@ -4,10 +4,10 @@
 
 #include "../exception.h"
 
-void copy(const void* dst, const void* src, size_t size) 
+void copy(void* dst, const void* src, size_t size) 
 {
 	for (int i = 0; i < size; i++)
-		((char*)dst)[i] = ((char*)src)[i];
+		((char*)dst)[i] = ((const char*)src)[i];
 }
 
 Stack stackInit() 
