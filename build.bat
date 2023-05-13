@@ -1,1 +1,1 @@
-msbuild lab-10\lab-10.vcxproj /t:rebuild /nodeReuse:false
+msbuild lab-13\lab-13.vcxproj /t:rebuild /nodeReuse:false
