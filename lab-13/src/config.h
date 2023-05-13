@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 #ifndef CONFIG_FILE_NAME
 #define CONFIG_FILE_NAME "config.ini"
