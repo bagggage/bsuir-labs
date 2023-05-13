@@ -50,7 +50,6 @@ Config loadConfig()
 
 	while (fgets(stringBuffer, CONFIG_MAX_STRING_SIZE, file) != NULL) 
 	{
-		char* subString = NULL;
 		char* valueString = strstr(stringBuffer, ":");
 
 		if (valueString == NULL)
@@ -78,9 +77,9 @@ Config loadConfig()
 			continue;
 		}
 
-		if ((subString = strstr(stringBuffer, CONFIG_CACHE_SIZE_IN_BYTES_PARAM)) != NULL)
+		if (strstr(stringBuffer, CONFIG_CACHE_SIZE_IN_BYTES_PARAM) != NULL)
 			config.maxCacheSize = value;
-		else if ((subString = strstr(stringBuffer, CONFIG_CACHE_SIZE_IN_MB_PARAM)) != NULL)
+		else if (strstr(stringBuffer, CONFIG_CACHE_SIZE_IN_MB_PARAM) != NULL)
 			config.maxCacheSize = value * 1024 * 1024;
 		else
 			printf("Unknown config parameter: \"%s\"\n", stringBuffer);

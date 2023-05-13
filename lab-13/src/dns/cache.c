@@ -800,6 +800,7 @@ Domain** findAllDomainsInFileWithIp(unsigned char ip[4], unsigned int* sizeOut, 
 		}
 
 		if (*(unsigned int*)domain->ip == *(unsigned int*)ip)
+		{
 			if (pushDomainInArray(&array, sizeOut, domain) == false)
 			{
 				destructDomain(domain);
@@ -809,6 +810,12 @@ Domain** findAllDomainsInFileWithIp(unsigned char ip[4], unsigned int* sizeOut, 
 
 				return array;
 			}
+		}
+		else 
+		{
+			destructDomain(domain);
+			free(domain);
+		}
 	}
 
 	free(stringBuffer);

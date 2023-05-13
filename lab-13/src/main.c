@@ -97,7 +97,7 @@ void testDns(DNSCache* cache)
 			continue;
 		}
 
-		Domain* domain = getDnsDomainByName(cache, stringBuffer);
+		const Domain* domain = getDnsDomainByName(cache, stringBuffer);
 
 		if (domain != NULL)
 			printIp(domain->ip);
