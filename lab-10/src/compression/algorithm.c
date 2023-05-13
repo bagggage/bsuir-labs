@@ -273,12 +273,14 @@ void fileReadDictionary(Dictionary* dictionary, FILE* file)
 
 		int i = 0;
 
-		//TODO Issues handling
-
 		while (string[i] != '/')
 			i++;
 
 		char* wordLhs = calloc(i + 1, sizeof(char));
+
+		if (wordLhs == NULL)
+			throwException(1, "Memory allocation failed");
+
 		strncpy(wordLhs, string, i);
 
 		int wordRhsStart = (++i);
@@ -287,6 +289,10 @@ void fileReadDictionary(Dictionary* dictionary, FILE* file)
 			i++;
 
 		char* wordRhs = calloc(i - wordRhsStart + 1, sizeof(char));
+
+		if (wordRhs == NULL)
+			throwException(1, "Memory allocation failed");
+
 		strncpy(wordRhs, string + wordRhsStart, i - wordRhsStart);
 
 		dictionaryInsert(dictionary, wordLhs, wordRhs);

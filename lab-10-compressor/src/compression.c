@@ -1,20 +1,20 @@
 #include "compression.h"
 
-#include "algorithm.h"
+#include <compression/algorithm.h>
 
-void printDictionary(const Dictionary* dictionary) 
-{
-	for (int i = 0; i < HASH_TABLE_SIZE; i++)
-	{
-		Pair* pair = dictionary->hashTable[i];
-
-		while (pair != NULL)
-		{
-			printf("Key: %s,\tValue: %s\n", pair->key, pair->value);
-			pair = pair->next;
-		}
-	}
-}
+//void printDictionary(const Dictionary* dictionary) 
+//{
+//	for (int i = 0; i < HASH_TABLE_SIZE; i++)
+//	{
+//		Pair* pair = dictionary->hashTable[i];
+//
+//		while (pair != NULL)
+//		{
+//			printf("Key: %s,\tValue: %s\n", pair->key, pair->value);
+//			pair = pair->next;
+//		}
+//	}
+//}
 
 void compress(FILE* file, const char* compressedFileDirectory)
 {

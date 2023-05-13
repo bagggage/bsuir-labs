@@ -1,6 +1,6 @@
 #include "decompression.h"
 
-#include "algorithm.h"
+#include <compression/algorithm.h>
 
 void decompress(FILE* file, const char* decompressedFileDirectory)
 {
@@ -19,4 +19,25 @@ void decompress(FILE* file, const char* decompressedFileDirectory)
 	fillFileAndReplaceWords(&dictionary, file, decompressedFile);
 
 	fclose(decompressedFile);
+
+	for (int i = 0; i < HASH_TABLE_SIZE; i++)
+	{
+		Pair* pair = dictionary.hashTable[i];
+
+		while (pair != NULL)
+		{
+			if (pair->key != NULL)
+			{
+				Pair* valuePair = dictionaryLookUpPair(&dictionary, pair->key);
+
+				valuePair->key = NULL;
+				valuePair->value = NULL;
+
+				free(pair->key);
+				free(pair->value);
+			}
+
+			pair = pair->next;
+		}
+	}
 }
